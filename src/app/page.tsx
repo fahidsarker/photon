@@ -18,6 +18,7 @@ import Image from "next/image";
 import { CompileResponse } from "@/app/api/route";
 import { defaultTheme } from "@/data/default_theme";
 import { getStorageCode, getStorageLanguage, getStorageTheme, setStorageCode, setStorageLanguage, setStoragetStorageheme } from "@/storage";
+import Link from "next/link";
 
 
 const Landing = () => {
@@ -175,7 +176,9 @@ const Landing = () => {
           <ThemeDropdown themeData={currentTheme} handleThemeChange={handleThemeChange} theme={currentTheme} />
         </div>
 
-        <Image src='/logo/github.png' alt="Logo" width={128} height={128} className="w-8 h-8 ml-auto mr-4 bg-white rounded-md cursor-pointer" />
+        <Link href={'https://github.com/fahidsarker/photon'} target="_blank" className="ml-auto mr-4">
+          <Image src='/logo/github.png' alt="Logo" width={128} height={128} className="w-8 h-8  bg-white rounded-md cursor-pointer" />
+        </Link>
 
       </div>
       <div className="flex flex-row space-x-4 items-start px-4 py-4">
