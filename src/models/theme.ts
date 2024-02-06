@@ -2,7 +2,8 @@ export interface ThemeSelectorInterface { value: string; label: string }
 
 export type BuiltinTheme = 'vs' | 'vs-dark' | 'hc-black' | 'hc-light';
 
-export interface ThemeData {
+export interface ThemeData extends ThemeSelectorInterface {
+
     base: BuiltinTheme;
     inherit: boolean;
     rules: ITokenThemeRule[];
@@ -20,3 +21,5 @@ export interface ITokenThemeRule {
     background?: string;
     fontStyle?: string;
 }
+
+

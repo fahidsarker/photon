@@ -1,4 +1,4 @@
-import { ThemeData } from "@/models/theme";
+import { ThemeData, ThemeSelectorInterface } from "@/models/theme";
 import { loader } from "@monaco-editor/react";
 export const monacoThemes = {
     active4d: "Active4D",
@@ -51,16 +51,16 @@ export const monacoThemes = {
     monoindustrial: "monoindustrial",
 };
 
-const defineTheme = async (theme: string): Promise<ThemeData | null> => {
+const defineTheme = async (theme: ThemeSelectorInterface): Promise<ThemeData | null> => {
     try {
-        const themeName = monacoThemes[theme as keyof typeof monacoThemes];
+        const themeName = monacoThemes[theme.value as keyof typeof monacoThemes];
         const [monaco, themeData] = await Promise.all([
             loader.init(),
             import(`monaco-themes/themes/${themeName}.json`),
         ]);
 
-        monaco.editor.defineTheme(theme, themeData);
-        return themeData as ThemeData;
+        monaco.editor.defineTheme(theme.value, themeData);
+        return { ...themeData, ...theme } as ThemeData;
     } catch (error) {
         return null;
     }
