@@ -1,6 +1,6 @@
 import exp from "constants";
 import axios from "axios";
-import { REACT_APP_RAPID_API_HOST, REACT_APP_RAPID_API_KEY, REACT_APP_RAPID_API_URL } from "@/secrets";
+import { RAPID_API_HOST, RAPID_API_KEY, RAPID_API_URL } from "@/secrets";
 
 export interface CompileResponse {
     message: string;
@@ -21,13 +21,13 @@ export async function POST(request: Request): Promise<Response> {
     };
     const options = {
         method: "POST",
-        url: REACT_APP_RAPID_API_URL,
+        url: RAPID_API_URL,
         params: { base64_encoded: "true", fields: "*" },
         headers: {
             "content-type": "application/json",
             "Content-Type": "application/json",
-            "X-RapidAPI-Host": REACT_APP_RAPID_API_HOST,
-            "X-RapidAPI-Key": REACT_APP_RAPID_API_KEY,
+            "X-RapidAPI-Host": RAPID_API_HOST,
+            "X-RapidAPI-Key": RAPID_API_KEY,
         },
         data: formData,
     };
@@ -73,11 +73,11 @@ const checkStatus = async (token: string, rec: number): Promise<CompileResponse>
     }
     const options = {
         method: "GET",
-        url: REACT_APP_RAPID_API_URL + "/" + token,
+        url: RAPID_API_URL + "/" + token,
         params: { base64_encoded: "true", fields: "*" },
         headers: {
-            "X-RapidAPI-Host": REACT_APP_RAPID_API_HOST,
-            "X-RapidAPI-Key": REACT_APP_RAPID_API_KEY,
+            "X-RapidAPI-Host": RAPID_API_HOST,
+            "X-RapidAPI-Key": RAPID_API_KEY,
         },
     };
     try {

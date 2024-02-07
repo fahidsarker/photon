@@ -19,6 +19,7 @@ import { CompileResponse } from "@/app/api/route";
 import { defaultTheme } from "@/data/default_theme";
 import { getStorageCode, getStorageLanguage, getStorageTheme, setStorageCode, setStorageLanguage, setStoragetStorageheme } from "@/storage";
 import Link from "next/link";
+import { RAPID_API_KEY } from "@/secrets";
 
 
 const Landing = () => {
@@ -26,12 +27,11 @@ const Landing = () => {
   const [outputDetails, setOutputDetails] = useState<OutputDetailsInt | null>(null);
   const [processing, setProcessing] = useState<boolean>(false);
   const [currentTheme, setCurrentTheme] = useState<ThemeData | null>(null);
-  const [language, setLanguage] = useState(getStorageLanguage() ?? languages[0]);
-  const [code, setCode] = useState<string | null>(getStorageCode(language?.value ?? languages[0].value));
+  const [language, setLanguage] = useState<LanguageInterface | null>(null);
+  const [code, setCode] = useState<string | null>(null);
 
   const enterPress = useKeyPress("Enter");
   const ctrlPress = useKeyPress("Control");
-
 
   // only run once to define the default theme
   useEffect(() => {
@@ -39,6 +39,11 @@ const Landing = () => {
       setCurrentTheme(data);
     }
     );
+
+
+    setLanguage(getStorageLanguage() ?? languages[0]);
+    setCode(getStorageCode(language?.value ?? languages[0].value) ?? languages[0].initCode ?? "");
+
   }, []);
 
   useEffect(() => {
@@ -47,6 +52,9 @@ const Landing = () => {
     }
   }, [ctrlPress, enterPress]);
   const onChange = (action: string, data: string) => {
+    if (language == null) {
+      return;
+    }
     switch (action) {
       case "code": {
         setCode(data);
@@ -64,7 +72,7 @@ const Landing = () => {
 
   const handleCompile = async () => {
 
-    if (code === null) {
+    if (code === null || language === null) {
       return;
     }
 
@@ -97,7 +105,7 @@ const Landing = () => {
 
 
   const onSelectChange = (sl: LanguageInterface) => {
-    if (sl.id === language.id) {
+    if (sl.id === language?.id) {
       return;
     }
 
@@ -143,10 +151,12 @@ const Landing = () => {
     });
   };
 
-  if (currentTheme == null) {
+  if (currentTheme == null || language == null) {
     // still loading the theme
     return <div className="flex items-center justify-center w-svw h-svh">Hang on...</div>;
   }
+
+
 
   return (
     <div style={{

@@ -11,11 +11,11 @@ Built with Typescript 💪🏼 and NextJS
 
 
 ## Compile and Run the project
-- create a file at `src/secrets.ts` with API key from RapidAPI:
-  ```ts
-  export const REACT_APP_RAPID_API_URL = <YOUR URL>;
-  export const REACT_APP_RAPID_API_HOST = <YOUR HOST>;
-  export const REACT_APP_RAPID_API_KEY = <YOUR KEY>;
+- create a file at `src/.env.local` with API key from RapidAPI:
+  ```env
+  RAPID_API_URL=<YOUR URL>
+  RAPID_API_HOST=<YOUR HOST>
+  RAPID_API_KEY=<YOUR KEY>
   ```
 - Run `npm install`
 - Run `npm run build`

@@ -20,11 +20,15 @@ export const setStorageCurrentOutput = (output: OutputDetailsInt) => {
 
 
 export const getStorageLanguage = (): LanguageInterface | null => {
-    const language = localStorage.getItem("language");
-    if (language) {
-        return JSON.parse(language);
+    try {
+        const language = localStorage.getItem("language");
+        if (language) {
+            return JSON.parse(language);
+        }
+        return null;
+    } catch (error) {
+        return null;
     }
-    return null;
 }
 
 export const getStorageCustomInput = (): string | null => {
