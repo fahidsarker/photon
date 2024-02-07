@@ -261,7 +261,7 @@ export default Landing;
 
 
 
-export const NotForMobile = () => {
+const NotForMobile = () => {
   return (
     <div id="not-for-mobile" className="p-4 flex flex-col gap-4 items-center justify-center w-svw h-svh">
       <Image src='/logo/code-logo.png' alt="Logo" width={128} height={128} className="w-24 h-24 cursor-pointer" />
