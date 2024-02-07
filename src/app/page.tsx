@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import CodeEditorWindow from "@/components/CodeEditorWindow";
 import { classnames } from "@/utils/general";
 import { languages } from "@/data/languages";
@@ -19,7 +19,6 @@ import { CompileResponse } from "@/app/api/route";
 import { defaultTheme } from "@/data/default_theme";
 import { getStorageCode, getStorageLanguage, getStorageTheme, setStorageCode, setStorageLanguage, setStoragetStorageheme } from "@/storage";
 import Link from "next/link";
-import { RAPID_API_KEY } from "@/secrets";
 
 
 const Landing = () => {
@@ -29,9 +28,31 @@ const Landing = () => {
   const [currentTheme, setCurrentTheme] = useState<ThemeData | null>(null);
   const [language, setLanguage] = useState<LanguageInterface | null>(null);
   const [code, setCode] = useState<string | null>(null);
+  // const [windowWidth, setWindowWidth] = useState<number | null>(null);
+  const [view, setView] = useState<"desktop" | "mobile">("desktop");
 
   const enterPress = useKeyPress("Enter");
   const ctrlPress = useKeyPress("Control");
+
+  useEffect(() => {
+    function onResize() {
+      console.log(window.innerWidth);
+      setView(prevView => {
+        if (window.innerWidth < 768) {
+          if (prevView === "desktop") {
+            return "mobile";
+          }
+        } else if (prevView === "mobile") {
+          return "desktop";
+        }
+        return prevView;
+      });
+    }
+
+    window.addEventListener('resize', onResize);
+    onResize();
+    return () => window.removeEventListener('resize', onResize);
+  }, [])
 
   // only run once to define the default theme
   useEffect(() => {
@@ -72,7 +93,7 @@ const Landing = () => {
 
   const handleCompile = async () => {
 
-    if (code === null || language === null) {
+    if (code === null || language === null || processing) {
       return;
     }
 
@@ -158,74 +179,93 @@ const Landing = () => {
 
 
 
+
+  if (view === "mobile") {
+    return <NotForMobile />
+
+  }
+
   return (
-    <div style={{
-      background: currentTheme.colors['editor.background'],
-      color: currentTheme.colors['editor.foreground'],
-    }} className="h-svh">
-      <ToastContainer
-        position="top-right"
-        autoClose={2000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
+    <>
+      <div id="ide" style={{
+        background: currentTheme.colors['editor.background'],
+        color: currentTheme.colors['editor.foreground'],
+      }} className="h-svh">
+        <ToastContainer
+          position="top-right"
+          autoClose={2000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
 
 
 
-      <div className="ml-4 flex flex-row mt-0 items-center justify-start">
-        <Image src='/logo/code-logo.png' alt="Logo" width={128} height={128} className="w-8 h-8 cursor-pointer" />
-        <div className="px-4 py-2">
-          <LanguagesDropdown themeData={currentTheme} onSelectChange={onSelectChange} />
-        </div>
-        <div className="px-4 py-2">
-          <ThemeDropdown themeData={currentTheme} handleThemeChange={handleThemeChange} theme={currentTheme} />
-        </div>
-
-        <Link href={'https://github.com/fahidsarker/photon'} target="_blank" className="ml-auto mr-4">
-          <Image src='/logo/github.png' alt="Logo" width={128} height={128} className="w-8 h-8  bg-white rounded-md cursor-pointer" />
-        </Link>
-
-      </div>
-      <div className="flex flex-row space-x-4 items-start px-4 py-4">
-        <div className="flex flex-col w-full h-full justify-start items-end">
-          <CodeEditorWindow
-            key={language.id}
-            code={code ?? language.initCode ?? ""}
-            onChange={onChange}
-            language={language ?? languages[0]}
-            theme={currentTheme.value}
-          />
-        </div>
-
-        <div className="flex flex-shrink-0 gap-4 w-[30%] flex-col ">
-          <OutputWindow themeData={currentTheme} outputDetails={outputDetails} />
-          <div className="flex flex-col items-end">
-            <CustomInput
-              themeData={currentTheme}
-              customInput={customInput}
-              setCustomInput={setCustomInput}
-            />
-            <button
-              onClick={handleCompile}
-              disabled={!code}
-              className={classnames(
-                "mt-4 border-2 border-black z-10 rounded-md shadow-[5px_5px_0px_0px_rgba(0,0,0)] px-4 py-2 hover:shadow transition duration-200 flex-shrink-0",
-                !code ? "opacity-50" : ""
-              )}
-            >
-              {processing ? "Processing..." : "Compile and Execute"}
-            </button>
+        <div className="ml-4 flex flex-row mt-0 items-center justify-start">
+          <Image src='/logo/code-logo.png' alt="Logo" width={128} height={128} className="w-8 h-8 cursor-pointer" />
+          <div className="px-4 py-2">
+            <LanguagesDropdown themeData={currentTheme} onSelectChange={onSelectChange} />
           </div>
-          {outputDetails && <OutputDetails outputDetails={outputDetails} />}
+          <div className="px-4 py-2">
+            <ThemeDropdown themeData={currentTheme} handleThemeChange={handleThemeChange} theme={currentTheme} />
+          </div>
+
+          <Link href={'https://github.com/fahidsarker/photon'} target="_blank" className="ml-auto mr-4">
+            <Image src='/logo/github.png' alt="Logo" width={128} height={128} className="w-9 h-9  bg-white rounded-md  cursor-pointer" />
+          </Link>
+
         </div>
+        <div className="flex flex-row space-x-4 items-start px-4 py-4">
+          <div className="flex flex-col w-full h-full justify-start items-end">
+            <CodeEditorWindow
+              key={language.id}
+              code={code ?? language.initCode ?? ""}
+              onChange={onChange}
+              language={language ?? languages[0]}
+              theme={currentTheme.value}
+            />
+          </div>
+
+          <div className="flex flex-shrink-0 gap-4 w-[30%] flex-col ">
+            <OutputWindow themeData={currentTheme} outputDetails={outputDetails} />
+            <div className="flex flex-col items-end">
+              <CustomInput
+                themeData={currentTheme}
+                customInput={customInput}
+                setCustomInput={setCustomInput}
+              />
+              <button
+                onClick={handleCompile}
+                disabled={!code}
+                className={classnames(
+                  "mt-4 border-2 border-black z-10 rounded-md shadow-[5px_5px_0px_0px_rgba(0,0,0)] px-4 py-2 hover:shadow transition duration-200 flex-shrink-0",
+                  !code ? "opacity-50" : ""
+                )}
+              >
+                {processing ? "Processing..." : "Compile and Execute"}
+              </button>
+            </div>
+            {outputDetails && <OutputDetails outputDetails={outputDetails} />}
+          </div>
+        </div>
+        {/* <Footer /> */}
       </div>
-      {/* <Footer /> */}
-    </div>
+    </>
   );
 };
 export default Landing;
+
+
+
+export const NotForMobile = () => {
+  return (
+    <div id="not-for-mobile" className="p-4 flex flex-col gap-4 items-center justify-center w-svw h-svh">
+      <Image src='/logo/code-logo.png' alt="Logo" width={128} height={128} className="w-24 h-24 cursor-pointer" />
+      <h1 className="text-lg text-center">Photon is not yet available for Mobile View. Please use the Desktop view while we work on it 😬</h1>
+    </div>
+  )
+}
