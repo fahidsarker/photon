@@ -1,5 +1,6 @@
+<img src="/public/logo/code-logo.png" alt="MarineGEO circle logo" style="height: 156px; width:156px;"/> 
 
-# <img src="/public/logo/code-logo.png" alt="MarineGEO circle logo" style="height: 36px; width:36px;"/> Photon
+# Photon
 
 A Web-based IDE with code compilation powered by Judge0
 
