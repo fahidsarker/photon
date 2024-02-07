@@ -19,7 +19,9 @@ import { CompileResponse } from "@/app/api/route";
 import { defaultTheme } from "@/data/default_theme";
 import { getStorageCode, getStorageLanguage, getStorageTheme, setStorageCode, setStorageLanguage, setStoragetStorageheme } from "@/storage";
 import Link from "next/link";
-
+import { compressCodeForUrl } from "@/helpers/compresser";
+import { FaShare, FaDownload, FaSave, FaCopy, } from "react-icons/fa";
+import { IoMenu } from "react-icons/io5";
 
 const Landing = () => {
   const [customInput, setCustomInput] = useState("");
@@ -178,59 +180,87 @@ const Landing = () => {
   }
 
 
+  function copyShareURLTOClipboard() {
+    if (!code) {
+      return;
+    }
+    const compressedCode = compressCodeForUrl(code);
 
-
-  if (view === "mobile") {
-    return <NotForMobile />
-
+    const currentURL = window.location.href;
+    const url = new URL(currentURL);
   }
 
+  // if (view === "mobile") {
+  //   return <NotForMobile />
+  // }
+
   return (
-    <>
-      <div id="ide" style={{
-        background: currentTheme.colors['editor.background'],
-        color: currentTheme.colors['editor.foreground'],
-      }} className="h-svh">
-        <ToastContainer
-          position="top-right"
-          autoClose={2000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-        />
+    <div id="ide" style={{
+      backgroundColor: currentTheme.colors['editor.background'],
+      color: currentTheme.colors['editor.foreground'],
+    }} className="h-svh w-svw overflow-auto">
+      <ToastContainer
+        position="top-right"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
 
 
 
-        <div className="ml-4 flex flex-row mt-0 items-center justify-start">
-          <Image src='/logo/code-logo.png' alt="Logo" width={128} height={128} className="w-8 h-8 cursor-pointer" />
-          <div className="px-4 py-2">
+
+
+      <div className="ml-4 flex flex-row  mt-0 items-center justify-center pt-2">
+        <IoMenu className="text-2xl font-bold mr-2 lg:hidden cursor-pointer" />
+        <Image src='/logo/code-logo.png' alt="Logo" width={128} height={128} className="w-8 h-8 cursor-pointer" />
+        <div className="hidden lg:flex  gap-2 lg:flex-row items-center justify-center">
+          <div className="flex flex-row ml-4 gap-4">
             <LanguagesDropdown themeData={currentTheme} onSelectChange={onSelectChange} />
-          </div>
-          <div className="px-4 py-2">
             <ThemeDropdown themeData={currentTheme} handleThemeChange={handleThemeChange} theme={currentTheme} />
           </div>
 
-          <Link href={'https://github.com/fahidsarker/photon'} target="_blank" className="ml-auto mr-4">
-            <Image src='/logo/github.png' alt="Logo" width={128} height={128} className="w-9 h-9  bg-white rounded-md  cursor-pointer" />
-          </Link>
-
-        </div>
-        <div className="flex flex-row space-x-4 items-start px-4 py-4">
-          <div className="flex flex-col w-full h-full justify-start items-end">
-            <CodeEditorWindow
-              key={language.id}
-              code={code ?? language.initCode ?? ""}
-              onChange={onChange}
-              language={language ?? languages[0]}
-              theme={currentTheme.value}
-            />
+          <div className="flex flex-row items-center justify-center h-full ml-3">
+            <button className="btn flex items-center gap-2 mx-2" >
+              <FaShare /> Share
+            </button>
+            <button className="btn flex items-center gap-2 mx-2" >
+              <FaCopy /> Copy
+            </button>
+            <button className="btn flex items-center gap-2 mx-2" >
+              <FaSave /> Save
+            </button>
+            <button className="btn flex items-center gap-2 mx-2" >
+              <FaDownload /> .js
+            </button>
           </div>
+        </div>
 
-          <div className="flex flex-shrink-0 gap-4 w-[30%] flex-col ">
+        <Link href={'https://github.com/fahidsarker/photon'} target="_blank" className="ml-auto mr-4">
+          <Image src='/logo/github.png' alt="Logo" width={128} height={128} className="w-9 h-9  bg-white rounded-md  cursor-pointer" />
+        </Link>
+
+      </div>
+      <div className="flex flex-row space-x-4 items-start px-4 py-4">
+        <div className="flex flex-col w-full h-full justify-start items-end">
+          <CodeEditorWindow
+            height={view === "desktop" ? "calc(100svh - 80px)" : "calc(100svh - 150px)"}
+            width={view === 'desktop' ? '100%' : '100%'}
+            key={language.id}
+            code={code ?? language.initCode ?? ""}
+            onChange={onChange}
+            language={language ?? languages[0]}
+            theme={currentTheme.value}
+          />
+        </div>
+
+        {
+          view === "desktop" &&
+          <div className="flex flex-shrink-0 gap-4 w-0 md:w-[200px] lg:w-[350px] flex-col ">
             <OutputWindow themeData={currentTheme} outputDetails={outputDetails} />
             <div className="flex flex-col items-end">
               <CustomInput
@@ -242,7 +272,7 @@ const Landing = () => {
                 onClick={handleCompile}
                 disabled={!code}
                 className={classnames(
-                  "mt-4 border-2 border-black z-10 rounded-md shadow-[5px_5px_0px_0px_rgba(0,0,0)] px-4 py-2 hover:shadow transition duration-200 flex-shrink-0",
+                  "btn mt-4",
                   !code ? "opacity-50" : ""
                 )}
               >
@@ -251,10 +281,16 @@ const Landing = () => {
             </div>
             {outputDetails && <OutputDetails outputDetails={outputDetails} />}
           </div>
-        </div>
-        {/* <Footer /> */}
+        }
+
+
       </div>
-    </>
+      <div className={`${view === "desktop" ? 'hidden' : ''} flex flex-row items-center justify-center`}>
+        <button className="btn  mt-4">
+          {processing ? "Processing..." : "Compile and Execute"}
+        </button>
+      </div>
+    </div>
   );
 };
 export default Landing;
