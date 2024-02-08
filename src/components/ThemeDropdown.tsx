@@ -3,6 +3,7 @@ import Select, { GroupBase, OptionsOrGroups } from "react-select";
 import monacoThemes from "monaco-themes/themes/themelist.json";
 import { customStyles } from "../data/styles";
 import { ThemeData, ThemeSelectorInterface } from "@/models/theme";
+import { themes } from "@/data/themes";
 
 const ThemeDropdown = ({ themeData, handleThemeChange, theme }: {
     handleThemeChange: (selectedOption: any) => void;
@@ -13,10 +14,10 @@ const ThemeDropdown = ({ themeData, handleThemeChange, theme }: {
         <Select
             placeholder={`Select Theme`}
             // options={languageOptions}
-            options={Object.entries(monacoThemes).map(([themeId, themeName]) => ({
-                label: themeName,
-                value: themeId,
-                key: themeId,
+            options={themes.map(({ value, label }) => ({
+                label: label,
+                value: value,
+                key: value,
                 // options: [
                 //     themeId
                 // ]

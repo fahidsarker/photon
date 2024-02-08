@@ -1,4 +1,4 @@
-export interface ThemeSelectorInterface { value: string; label: string }
+export interface ThemeSelectorInterface { value: string; label: string, background: string, forground: string }
 
 export type BuiltinTheme = 'vs' | 'vs-dark' | 'hc-black' | 'hc-light';
 

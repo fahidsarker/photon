@@ -30,7 +30,6 @@ const Landing = () => {
   const [currentTheme, setCurrentTheme] = useState<ThemeData | null>(null);
   const [language, setLanguage] = useState<LanguageInterface | null>(null);
   const [code, setCode] = useState<string | null>(null);
-  // const [windowWidth, setWindowWidth] = useState<number | null>(null);
   const [view, setView] = useState<"desktop" | "mobile">("desktop");
 
   const enterPress = useKeyPress("Enter");
