@@ -7,8 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "prebuild": "ts-node ./src/pre/theme_gen.ts",
-    "predev": "ts-node ./src/pre/theme_gen.ts"
+    "prebuild": "node ./src/pre/theme_gen.ts",
+    "predev": "node ./src/pre/theme_gen.ts"
   },
   "dependencies": {
     "@monaco-editor/react": "^4.6.0",
