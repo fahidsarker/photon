@@ -1,11 +1,11 @@
 import React from "react";
 import { classnames } from "@/utils/general";
-import { ThemeData } from "@/models/theme";
+import { ThemeData, ThemeSelectorInterface } from "@/models/theme";
 
 const CustomInput = ({ themeData, customInput, setCustomInput }: {
     customInput: string;
     setCustomInput: (value: string) => void;
-    themeData: ThemeData
+    themeData: ThemeSelectorInterface;
 }) => {
     return (
         <>
@@ -13,8 +13,8 @@ const CustomInput = ({ themeData, customInput, setCustomInput }: {
             <textarea
                 rows={5}
                 style={{
-                    backgroundColor: themeData.colors['editor.background'],
-                    color: themeData.colors['editor.foreground'],
+                    backgroundColor: themeData.background,
+                    color: themeData.forground,
                 }
                 }
                 value={customInput}

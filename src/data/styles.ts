@@ -1,9 +1,9 @@
-import { ThemeData } from "@/models/theme";
+import { ThemeData, ThemeSelectorInterface } from "@/models/theme";
 import { StylesConfig } from "react-select";
 
-export const customStyles = (themeData: ThemeData): StylesConfig<any> => {
-    const themeBackground = themeData.colors['editor.background'];
-    const themeForeground = themeData.colors['editor.foreground'];
+export const customStyles = (themeData: ThemeSelectorInterface): StylesConfig<any> => {
+    const themeBackground = themeData.background;
+    const themeForeground = themeData.forground;
     return {
         control: (base, _) => ({
             ...base,

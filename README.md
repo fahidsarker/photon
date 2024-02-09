@@ -49,7 +49,7 @@ RAPID_API_KEY=<YOUR KEY>
 -  [x] Syntax Highlights
 -  [x] Theming
 -  [x] Server-side compilation
--  [ ] Share Feature with string compression and serverside components
-- [ ] Create landing /about page
-- [ ] Responsive Mobile View
-- [ ] More serverside components
+-  [x] Share Feature with string compression and serverside components
+-  [ ] Create landing /about page
+-  [ ] Responsive Mobile View
+-  [ ] More serverside components

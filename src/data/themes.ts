@@ -7,313 +7,313 @@
     {
         "background": "#FFFFFF",
         "forground": "#3B3B3B",
-        "value": "Active4D",
+        "value": "active4d",
         "label": "Active4D"
     },
     {
         "background": "#000000",
         "forground": "#FFFFFF",
-        "value": "All Hallows Eve",
+        "value": "all-hallows-eve",
         "label": "All Hallows Eve"
     },
     {
         "background": "#200020",
         "forground": "#D0D0FF",
-        "value": "Amy",
+        "value": "amy",
         "label": "Amy"
     },
     {
         "background": "#372725",
         "forground": "#E6E1C4",
-        "value": "Birds of Paradise",
+        "value": "birds-of-paradise",
         "label": "Birds of Paradise"
     },
     {
         "background": "#0C1021",
         "forground": "#F8F8F8",
-        "value": "Blackboard",
+        "value": "blackboard",
         "label": "Blackboard"
     },
     {
         "background": "#0D0D0DFA",
         "forground": "#EEEEEE",
-        "value": "Brilliance Black",
+        "value": "brilliance-black",
         "label": "Brilliance Black"
     },
     {
         "background": "#050505FA",
         "forground": "#CDCDCD",
-        "value": "Brilliance Dull",
+        "value": "brilliance-dull",
         "label": "Brilliance Dull"
     },
     {
         "background": "#FFFFFF",
         "forground": "#000000",
-        "value": "Chrome DevTools",
+        "value": "chrome-devtools",
         "label": "Chrome DevTools"
     },
     {
         "background": "#191919",
         "forground": "#929292",
-        "value": "Clouds Midnight",
+        "value": "clouds-midnight",
         "label": "Clouds Midnight"
     },
     {
         "background": "#FFFFFF",
         "forground": "#000000",
-        "value": "Clouds",
+        "value": "clouds",
         "label": "Clouds"
     },
     {
         "background": "#002240",
         "forground": "#FFFFFF",
-        "value": "Cobalt",
+        "value": "cobalt",
         "label": "Cobalt"
     },
     {
         "background": "#193549",
         "forground": "#FFFFFF",
-        "value": "Cobalt2",
+        "value": "cobalt2",
         "label": "Cobalt2"
     },
     {
         "background": "#F9F9F9",
         "forground": "#080808",
-        "value": "Dawn",
+        "value": "dawn",
         "label": "Dawn"
     },
     {
         "background": "#282a36",
         "forground": "#f8f8f2",
-        "value": "Dracula",
+        "value": "dracula",
         "label": "Dracula"
     },
     {
         "background": "#FFFFFF",
         "forground": "#000000",
-        "value": "Dreamweaver",
+        "value": "dreamweaver",
         "label": "Dreamweaver"
     },
     {
         "background": "#FFFFFF",
         "forground": "#000000",
-        "value": "Eiffel",
+        "value": "eiffel",
         "label": "Eiffel"
     },
     {
         "background": "#2A211C",
         "forground": "#BDAE9D",
-        "value": "Espresso Libre",
+        "value": "espresso-libre",
         "label": "Espresso Libre"
     },
     {
         "background": "#24292e",
         "forground": "#f6f8fa",
-        "value": "GitHub Dark",
+        "value": "github-dark",
         "label": "GitHub Dark"
     },
     {
         "background": "#ffffff",
         "forground": "#24292e",
-        "value": "GitHub Light",
+        "value": "github-light",
         "label": "GitHub Light"
     },
     {
         "background": "#F8F8FF",
         "forground": "#000000",
-        "value": "GitHub",
+        "value": "github",
         "label": "GitHub"
     },
     {
         "background": "#FFFFFF",
         "forground": "#000000",
-        "value": "IDLE",
+        "value": "idle",
         "label": "IDLE"
     },
     {
         "background": "#E8E9E8",
         "forground": "#363636",
-        "value": "Katzenmilch",
+        "value": "katzenmilch",
         "label": "Katzenmilch"
     },
     {
         "background": "#E8E9E8",
         "forground": "#363636",
-        "value": "Kuroir Theme",
+        "value": "kuroir-theme",
         "label": "Kuroir Theme"
     },
     {
         "background": "#FFFFFF",
         "forground": "#000000",
-        "value": "LAZY",
+        "value": "lazy",
         "label": "LAZY"
     },
     {
         "background": "#969696",
         "forground": "#000000",
-        "value": "MagicWB (Amiga)",
+        "value": "magicwb--amiga-",
         "label": "MagicWB (Amiga)"
     },
     {
         "background": "#161616",
         "forground": "#E6E1DC",
-        "value": "Merbivore Soft",
+        "value": "merbivore-soft",
         "label": "Merbivore Soft"
     },
     {
         "background": "#161616",
         "forground": "#E6E1DC",
-        "value": "Merbivore",
+        "value": "merbivore",
         "label": "Merbivore"
     },
     {
         "background": "#272822",
         "forground": "#F8F8F2",
-        "value": "Monokai Bright",
+        "value": "monokai-bright",
         "label": "Monokai Bright"
     },
     {
         "background": "#272822",
         "forground": "#F8F8F2",
-        "value": "Monokai",
+        "value": "monokai",
         "label": "Monokai"
     },
     {
         "background": "#011627",
         "forground": "#d6deeb",
-        "value": "Night Owl",
+        "value": "night-owl",
         "label": "Night Owl"
     },
     {
         "background": "#2E3440",
         "forground": "#D8DEE9",
-        "value": "Nord",
+        "value": "nord",
         "label": "Nord"
     },
     {
         "background": "#1B2B34",
         "forground": "#CDD3DE",
-        "value": "Oceanic Next",
+        "value": "oceanic-next",
         "label": "Oceanic Next"
     },
     {
         "background": "#211E1E",
         "forground": "#DADADA",
-        "value": "Pastels on Dark",
+        "value": "pastels-on-dark",
         "label": "Pastels on Dark"
     },
     {
         "background": "#F1F1F1",
         "forground": "#000000",
-        "value": "Slush and Poppies",
+        "value": "slush-and-poppies",
         "label": "Slush and Poppies"
     },
     {
         "background": "#002B36",
         "forground": "#839496",
-        "value": "Solarized-dark",
+        "value": "solarized-dark",
         "label": "Solarized-dark"
     },
     {
         "background": "#FDF6E3",
         "forground": "#586E75",
-        "value": "Solarized-light",
+        "value": "solarized-light",
         "label": "Solarized-light"
     },
     {
         "background": "#0D0D0D",
         "forground": "#DDE6CF",
-        "value": "SpaceCadet",
+        "value": "spacecadet",
         "label": "SpaceCadet"
     },
     {
         "background": "#000000",
         "forground": "#F8F8F8",
-        "value": "Sunburst",
+        "value": "sunburst",
         "label": "Sunburst"
     },
     {
         "background": "#FFFFFF",
         "forground": "#000000",
-        "value": "Textmate (Mac Classic)",
+        "value": "textmate--mac-classic-",
         "label": "Textmate (Mac Classic)"
     },
     {
         "background": "#002451",
         "forground": "#FFFFFF",
-        "value": "Tomorrow-Night-Blue",
+        "value": "tomorrow-night-blue",
         "label": "Tomorrow-Night-Blue"
     },
     {
         "background": "#000000",
         "forground": "#DEDEDE",
-        "value": "Tomorrow-Night-Bright",
+        "value": "tomorrow-night-bright",
         "label": "Tomorrow-Night-Bright"
     },
     {
         "background": "#2D2D2D",
         "forground": "#CCCCCC",
-        "value": "Tomorrow-Night-Eighties",
+        "value": "tomorrow-night-eighties",
         "label": "Tomorrow-Night-Eighties"
     },
     {
         "background": "#1D1F21",
         "forground": "#C5C8C6",
-        "value": "Tomorrow-Night",
+        "value": "tomorrow-night",
         "label": "Tomorrow-Night"
     },
     {
         "background": "#FFFFFF",
         "forground": "#4D4D4C",
-        "value": "Tomorrow",
+        "value": "tomorrow",
         "label": "Tomorrow"
     },
     {
         "background": "#141414",
         "forground": "#F8F8F8",
-        "value": "Twilight",
+        "value": "twilight",
         "label": "Twilight"
     },
     {
         "background": "#000000F7",
         "forground": "#F8F8F8",
-        "value": "Upstream Sunburst",
+        "value": "upstream-sunburst",
         "label": "Upstream Sunburst"
     },
     {
         "background": "#000000",
         "forground": "#FFFFFF",
-        "value": "Vibrant Ink",
+        "value": "vibrant-ink",
         "label": "Vibrant Ink"
     },
     {
         "background": "#FFFFFF",
         "forground": "#000000",
-        "value": "Xcode_default",
+        "value": "xcode-default",
         "label": "Xcode_default"
     },
     {
         "background": "#404040",
         "forground": "#DEDEDE",
-        "value": "Zenburnesque",
+        "value": "zenburnesque",
         "label": "Zenburnesque"
     },
     {
         "background": "#EEEEEEEB",
         "forground": "#000000",
-        "value": "iPlastic",
+        "value": "iplastic",
         "label": "iPlastic"
     },
     {
         "background": "#323232",
         "forground": "#FFFFFF",
-        "value": "idleFingers",
+        "value": "idlefingers",
         "label": "idleFingers"
     },
     {
         "background": "#0B0A09",
         "forground": "#FCFFE0",
-        "value": "krTheme",
+        "value": "krtheme",
         "label": "krTheme"
     },
     {

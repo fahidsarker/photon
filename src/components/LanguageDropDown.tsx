@@ -2,27 +2,29 @@ import React from "react";
 import Select, { GroupBase } from "react-select";
 import { customStyles } from "../data/styles";
 import { languages } from "../data/languages";
-import { ThemeData } from "@/models/theme";
+import { ThemeData, ThemeSelectorInterface } from "@/models/theme";
+import { LanguageInterface } from "@/models/language";
 
-const LanguagesDropdown = ({ themeData, onSelectChange }: {
-    onSelectChange: (selectedOption: any) => void;
-    themeData: ThemeData
+const LanguagesDropdown = ({ language, themeData, onSelectChange }: {
+    themeData: ThemeSelectorInterface,
+    language: LanguageInterface,
+    onSelectChange: (selectedOption: any) => void
 }) => {
     return (
-        <Select<typeof languages[0]>
+        <Select<LanguageInterface>
             placeholder={`Select Language`}
             options={languages.map((language) => (
                 {
-                    label: language.label,
-                    value: language.value,
                     key: language.value,
-                    id: language.id,
-                    name: language.name,
-                    initCode: language.initCode,
+                    ...language
                 }
             ))}
             styles={customStyles(themeData)}
-            defaultValue={languages[0] as any}
+            value={{
+                key: language.value,
+                ...language
+            } as any}
+            // defaultValue={language}
             name="language"
             onChange={(selectedOption) => onSelectChange(selectedOption)}
         />

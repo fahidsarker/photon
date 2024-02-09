@@ -4,4 +4,5 @@ export interface LanguageInterface {
     label: string;
     value: string;
     initCode?: string;
+    extension: string;
 }

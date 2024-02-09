@@ -6,18 +6,20 @@ async function genThemes() {
     const monacoThemeModuleDir = 'node_modules/monaco-themes/themes';
     const themeListPath = `${monacoThemeModuleDir}/themelist.json`;
     const thmemeListFile = fs.readFileSync(themeListPath, 'utf8');
-    const themeJson = JSON.parse(thmemeListFile); // id:name
-    const themeNames = Object.values(themeJson);
+    const themeJsn = JSON.parse(thmemeListFile); // id:name
+    // const themeNames = Object.values(themeJson);
+    const thmeBases = Object.keys(themeJsn);
 
     const themes = [];
-    for (const name of themeNames) {
+    for (const key of thmeBases) {
+        const name = themeJsn[key];
         const themeJsonPath = `${monacoThemeModuleDir}/${name}.json`;
         const themeJsonFile = fs.readFileSync(themeJsonPath, 'utf8');
         const themeJson = JSON.parse(themeJsonFile);
         const theme = {
             background: themeJson.colors['editor.background'],
             forground: themeJson.colors['editor.foreground'],
-            value: name,
+            value: key,
             label: name
         }
         themes.push(theme);

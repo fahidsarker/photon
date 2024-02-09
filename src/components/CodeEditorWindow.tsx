@@ -11,7 +11,6 @@ const CodeEditorWindow = ({ onChange, language, code, theme, height, width }: {
     height: string;
     width: string;
 }) => {
-    console.log("CodeEditorWindow -> language", language);
     const [value, setValue] = useState(code || "");
 
     const handleEditorChange = (value: string | undefined) => {
