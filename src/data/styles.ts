@@ -1,9 +1,9 @@
-import { ThemeData } from "@/models/theme";
+import { ThemeData, ThemeSelectorInterface } from "@/models/theme";
 import { StylesConfig } from "react-select";
 
-export const customStyles = (themeData: ThemeData): StylesConfig<any> => {
-    const themeBackground = themeData.colors['editor.background'];
-    const themeForeground = themeData.colors['editor.foreground'];
+export const customStyles = (themeData: ThemeSelectorInterface): StylesConfig<any> => {
+    const themeBackground = themeData.background;
+    const themeForeground = themeData.forground;
     return {
         control: (base, _) => ({
             ...base,
@@ -13,7 +13,7 @@ export const customStyles = (themeData: ThemeData): StylesConfig<any> => {
             borderRadius: "5px",
             color: themeForeground,
             fontSize: "0.8rem",
-            lineHeight: "1.75rem",
+            // lineHeight: "1.75rem",
             backgroundColor: themeBackground,
             cursor: "pointer",
             border: "2px solid #000000",
@@ -40,7 +40,7 @@ export const customStyles = (themeData: ThemeData): StylesConfig<any> => {
                 ...styles,
                 color: themeForeground,
                 fontSize: "0.8rem",
-                lineHeight: "1.75rem",
+                // lineHeight: "1.75rem",
                 width: "100%",
                 background: themeBackground,
                 ":hover": {

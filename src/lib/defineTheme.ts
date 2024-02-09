@@ -53,15 +53,19 @@ export const monacoThemes = {
 
 const defineTheme = async (theme: ThemeSelectorInterface): Promise<ThemeData | null> => {
     try {
-        const themeName = monacoThemes[theme.value as keyof typeof monacoThemes];
+        const themeName = theme.label;
         const [monaco, themeData] = await Promise.all([
             loader.init(),
             import(`monaco-themes/themes/${themeName}.json`),
         ]);
 
+        console.log("themeData", themeData);
+        console.log("theme", theme);
+
         monaco.editor.defineTheme(theme.value, themeData);
         return { ...themeData, ...theme } as ThemeData;
     } catch (error) {
+        console.log("error", error);
         return null;
     }
 };
