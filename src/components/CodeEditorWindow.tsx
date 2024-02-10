@@ -28,7 +28,7 @@ const CodeEditorWindow = ({ onChange, language, code, theme, height, width, font
                 language={language.value}
                 value={value}
                 options={{
-                    fontSize: 24,
+                    fontSize: fontSize,
                 }}
                 theme={theme}
                 defaultValue={language.initCode ?? ''}

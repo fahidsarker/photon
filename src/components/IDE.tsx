@@ -21,7 +21,7 @@ import { CompileResponse } from '@/app/api/route';
 import { setCookie } from 'cookies-next';
 import { compressCodeForUrl } from '@/helpers/compresser';
 import { GITHUB_URL } from '@/data/constants';
-const IDE = ({ themeBaseStart, language, initCode }: { language: LanguageInterface, themeBaseStart: ThemeSelectorInterface, initCode: string | undefined }) => {
+const IDE = ({ themeBaseStart, language, initCode, initFontSize }: { language: LanguageInterface, themeBaseStart: ThemeSelectorInterface, initCode: string | undefined, initFontSize?: number }) => {
     const [customInput, setCustomInput] = useState("");
     const [outputDetails, setOutputDetails] = useState<OutputDetailsInt | null>(null);
     const [processing, setProcessing] = useState<boolean>(false);
@@ -29,9 +29,13 @@ const IDE = ({ themeBaseStart, language, initCode }: { language: LanguageInterfa
     const [themeData, setThemeData] = useState<ThemeData | null>(null);
     const [code, setCode] = useState<string | null>(initCode ?? language.initCode ?? '');
     const [view, setView] = useState<"desktop" | "mobile">("desktop");
+    const [fontSize, setFontSize] = useState<number>(initFontSize ?? 14);
 
     const enterPress = useKeyPress("Enter");
     const ctrlPress = useKeyPress("Control");
+    const cmdPress = useKeyPress("Meta");
+    const negativePress = useKeyPress("-");
+    const positivePress = useKeyPress("=");
 
 
     useEffect(() => {
@@ -62,11 +66,29 @@ const IDE = ({ themeBaseStart, language, initCode }: { language: LanguageInterfa
         return () => window.removeEventListener('resize', onResize);
     }, [])
 
+
     useEffect(() => {
-        if (enterPress && ctrlPress) {
+        if (enterPress && (ctrlPress || cmdPress)) {
             handleCompile();
         }
-    }, [ctrlPress, enterPress]);
+    }, [ctrlPress, enterPress, cmdPress]);
+
+    useEffect(() => {
+        if (negativePress && (ctrlPress || cmdPress)) {
+            setCookie("font_size", (fontSize - 1).toString());
+            setFontSize(prev => prev - 1);
+        }
+    }, [negativePress, ctrlPress, cmdPress]);
+
+    useEffect(() => {
+        if (positivePress && (ctrlPress || cmdPress)) {
+            setCookie("font_size", (fontSize + 1).toString());
+            setFontSize(prev => prev + 1);
+        }
+    }, [positivePress, ctrlPress, cmdPress]);
+
+
+
     const onChange = (action: string, data: string) => {
         if (language == null) {
             return;
@@ -274,7 +296,7 @@ const IDE = ({ themeBaseStart, language, initCode }: { language: LanguageInterfa
                                 height={view === "desktop" ? "calc(100svh - 80px)" : "calc(100svh - 150px)"}
                                 width={view === 'desktop' ? '100%' : '100%'}
                                 key={language.id}
-                                fontSize={14}
+                                fontSize={fontSize}
                                 code={code ?? language.initCode ?? ""}
                                 onChange={onChange}
                                 language={language}

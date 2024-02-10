@@ -58,9 +58,12 @@ const page = async ({ params, searchParams }: Props) => {
         initCode = getCookie(`code_${languageID}`, { cookies })
     }
 
+    const fontSizeStr = getCookie("font_size", { cookies })
+    const fontSize = fontSizeStr === undefined ? undefined : parseInt(fontSizeStr)
+
 
     return (
-        <IDE language={language} themeBaseStart={savedTheme} initCode={initCode} />
+        <IDE language={language} themeBaseStart={savedTheme} initCode={initCode} initFontSize={fontSize} />
     )
 }
 
