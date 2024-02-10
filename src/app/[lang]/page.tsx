@@ -31,40 +31,47 @@ export async function generateMetadata(
 }
 
 const page = async ({ params, searchParams }: Props) => {
-
-    const languageID = params.lang
-    const language = languages.find((lang) => lang.value === languageID)
-    if (language === undefined) {
-        notFound()
-    }
-
-    let savedTheme = themes[0]
-    const savedThemeValue = getCookie("theme_value", { cookies })
-    if (savedThemeValue !== undefined) {
-        savedTheme = themes.find((theme) => theme.value === savedThemeValue) || themes[0]
-    }
-
-    let initCode: string | undefined = undefined;
     try {
-        if (searchParams.code !== undefined) {
-            initCode = await decompressCodeFromUrl(searchParams.code)
+
+        const languageID = params.lang
+        const language = languages.find((lang) => lang.value === languageID)
+        if (language === undefined) {
+            notFound()
         }
+
+        let savedTheme = themes[0]
+        const savedThemeValue = getCookie("theme_value", { cookies })
+        if (savedThemeValue !== undefined) {
+            savedTheme = themes.find((theme) => theme.value === savedThemeValue) || themes[0]
+        }
+
+        let initCode: string | undefined = undefined;
+        try {
+            if (searchParams.code !== undefined) {
+                initCode = await decompressCodeFromUrl(searchParams.code)
+            }
+        } catch (error) {
+            console.error(error)
+            initCode = ''
+        }
+
+        if (initCode === undefined) {
+            initCode = getCookie(`code_${languageID}`, { cookies })
+        }
+
+        const fontSizeStr = getCookie("font_size", { cookies })
+        const fontSize = fontSizeStr === undefined ? undefined : parseInt(fontSizeStr)
+
+
+        return (
+            <IDE language={language} themeBaseStart={savedTheme} initCode={initCode} initFontSize={fontSize} />
+        )
     } catch (error) {
         console.error(error)
-        initCode = ''
+        // return notFound()
+        return <IDE language={languages[0]} themeBaseStart={themes[0]} initCode={''} initFontSize={undefined} />
+
     }
-
-    if (initCode === undefined) {
-        initCode = getCookie(`code_${languageID}`, { cookies })
-    }
-
-    const fontSizeStr = getCookie("font_size", { cookies })
-    const fontSize = fontSizeStr === undefined ? undefined : parseInt(fontSizeStr)
-
-
-    return (
-        <IDE language={language} themeBaseStart={savedTheme} initCode={initCode} initFontSize={fontSize} />
-    )
 }
 
 export async function generateStaticParams() {
