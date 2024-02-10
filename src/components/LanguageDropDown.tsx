@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import Select, { GroupBase } from "react-select";
 import { customStyles } from "../data/styles";
@@ -8,7 +9,7 @@ import { LanguageInterface } from "@/models/language";
 const LanguagesDropdown = ({ language, themeData, onSelectChange }: {
     themeData: ThemeSelectorInterface,
     language: LanguageInterface,
-    onSelectChange: (selectedOption: any) => void
+    onSelectChange?: (selectedOption: any) => void
 }) => {
     return (
         <Select<LanguageInterface>
@@ -26,7 +27,14 @@ const LanguagesDropdown = ({ language, themeData, onSelectChange }: {
             } as any}
             // defaultValue={language}
             name="language"
-            onChange={(selectedOption) => onSelectChange(selectedOption)}
+            onChange={(selectedOption) => {
+                if (!selectedOption) return;
+                if (onSelectChange) {
+                    onSelectChange(selectedOption);
+                    return;
+                }
+                window.open(window.location.origin + `/${selectedOption.value}`, "_self");
+            }}
         />
     );
 };

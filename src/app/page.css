@@ -1,0 +1,7 @@
+.btn-back {
+    @apply bg-gradient-to-r from-70% from-[rgb(0,164,255)] text-black to-[rgb(5,231,211)];
+}
+
+.demo-video{
+    width: clamp(300px, 100%, 600px);
+}

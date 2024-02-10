@@ -20,6 +20,7 @@ import OutputDetails from './OutputDetails';
 import { CompileResponse } from '@/app/api/route';
 import { setCookie } from 'cookies-next';
 import { compressCodeForUrl } from '@/helpers/compresser';
+import { GITHUB_URL } from '@/data/constants';
 const IDE = ({ themeBaseStart, language, initCode }: { language: LanguageInterface, themeBaseStart: ThemeSelectorInterface, initCode: string | undefined }) => {
     const [customInput, setCustomInput] = useState("");
     const [outputDetails, setOutputDetails] = useState<OutputDetailsInt | null>(null);
@@ -255,7 +256,7 @@ const IDE = ({ themeBaseStart, language, initCode }: { language: LanguageInterfa
                     </div>
                 </div>
 
-                <Link href={'https://github.com/fahidsarker/photon'} target="_blank" className="ml-auto mr-4">
+                <Link href={GITHUB_URL} target="_blank" className="ml-auto mr-4">
                     <Image src='/logo/github.png' alt="Logo" width={128} height={128} className="w-9 h-9  bg-white rounded-md  cursor-pointer" />
                 </Link>
 
@@ -273,6 +274,7 @@ const IDE = ({ themeBaseStart, language, initCode }: { language: LanguageInterfa
                                 height={view === "desktop" ? "calc(100svh - 80px)" : "calc(100svh - 150px)"}
                                 width={view === 'desktop' ? '100%' : '100%'}
                                 key={language.id}
+                                fontSize={14}
                                 code={code ?? language.initCode ?? ""}
                                 onChange={onChange}
                                 language={language}

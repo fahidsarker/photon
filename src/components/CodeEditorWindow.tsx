@@ -3,13 +3,14 @@ import React, { useState } from "react";
 import Editor from "@monaco-editor/react";
 import { LanguageInterface } from "@/models/language";
 
-const CodeEditorWindow = ({ onChange, language, code, theme, height, width }: {
+const CodeEditorWindow = ({ onChange, language, code, theme, height, width, fontSize }: {
     onChange: (key: string, value: string) => void;
     language: LanguageInterface;
     code: string;
     theme: string;
     height: string;
     width: string;
+    fontSize: number;
 }) => {
     const [value, setValue] = useState(code || "");
 
@@ -26,6 +27,9 @@ const CodeEditorWindow = ({ onChange, language, code, theme, height, width }: {
                 width={width}
                 language={language.value}
                 value={value}
+                options={{
+                    fontSize: 24,
+                }}
                 theme={theme}
                 defaultValue={language.initCode ?? ''}
                 onChange={handleEditorChange}
