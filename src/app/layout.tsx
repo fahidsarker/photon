@@ -17,7 +17,7 @@ const poppins = Poppins({
 })
 
 export const metadata: Metadata = {
-  title: "Photon - IDE",
+  title: "Photon - Online IDE for coding and compiling code in various languages",
   description: `Photon is a simple online IDE for compiling and running code in various languages. It is a simple and easy to use online IDE for coding and compiling code in various languages. 
     ${languages.map((lang) => 'Online IDE for ' + lang.label).join(", ")}
   `,
