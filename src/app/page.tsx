@@ -8,10 +8,11 @@ import LanguagesDropdown from '@/components/LanguageDropDown'
 import { themes } from '@/data/themes'
 import Link from 'next/link'
 import { GITHUB_URL } from '@/data/constants'
+import { PhotonHighlight } from '@/data/photon_highlights'
 
 
 const page = () => {
-  return <main className='bg-gradient-to-tr from-[#120024] to-[#010101] h-svh w-svw overflow-auto'>
+  return <main className='bg-gradient-to-tr from-[#120024] to-[#010101] h-svh w-svw overflow-x-hidden overflow-y-scroll'>
     <nav className='bg-[#010101] flex flex-row w-svw font-poppins items-center p-4 text-sm'>
       <Image className='w-8 h-8' src={'/logo/code-logo.png'} alt='logo' width={100} height={100} />
       <h1 className='font-thin text-xl ml-2'>Photon</h1>
@@ -37,7 +38,7 @@ const page = () => {
         <p className='font-poppins text-opacity-65 text-white font-thin text-sm'>
           Photon is a modern code editor that runs on the browser. It is designed to be fast, reliable and easy to use. It is built with modern web technologies and is open source.
         </p>
-        <div className='flex flex-col sm:flex-row gap-4 mt-4'>
+        <div className='flex flex-col sm:flex-row gap-4 mt-2'>
           <LanguagesDropdown themeData={themes[10]} language={languages[0]} />
           <StartCodingBtn />
         </div>
@@ -48,8 +49,18 @@ const page = () => {
       <video src='/demos/features.mp4' autoPlay={true} loop muted className='demo-video rounded-lg mt-8' />
 
     </section>
-    <section>
+    <section className='mt-[300px] flex flex-wrap gap-4 rounded-md bg-black bg-opacity-20 m-4  items-center justify-center'>
+      {
+        PhotonHighlight.all().map((highlight, index) => {
+          return <div key={index} className='h-[400px] w-[350px] p-8 flex-col flex gap-4'>
+            <Image src={highlight.logo} alt={highlight.title} width={56} height={56} className='w-12 h-12' />
+            <h1 className='font-poppins text-3xl'>{highlight.title}</h1>
+            <p className='font-roboto-mono text-sm text-justify'>{highlight.description}</p>
 
+          </div>
+
+        })
+      }
     </section>
 
   </main>
