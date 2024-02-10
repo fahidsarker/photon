@@ -13,7 +13,7 @@ import { PhotonHighlight } from '@/data/photon_highlights'
 
 const page = () => {
   return <main className='bg-gradient-to-tr from-[#120024] to-[#010101] h-svh w-svw overflow-x-hidden overflow-y-scroll'>
-    <nav className='bg-[#010101] flex flex-row w-svw font-poppins items-center p-4 text-sm'>
+    <nav className='bg-[#010101] flex flex-row w-svw font-poppins items-center py-4 px-8 text-sm'>
       <Image className='w-8 h-8' src={'/logo/code-logo.png'} alt='logo' width={100} height={100} />
       <h1 className='font-thin text-xl ml-2'>Photon</h1>
       <ul className='ml-auto mr-2 text-white text-opacity-70 flex gap-2'>
@@ -30,7 +30,7 @@ const page = () => {
       <StartCodingBtn />
     </nav>
 
-    <section className='mt-[10svh] flex flex-col items-center lg:justify-between justify-center font-poppins gap-4 mx-8 lg:flex-row'>
+    <section className='mt-[60px] flex flex-col items-center lg:justify-between justify-center font-poppins gap-4 mx-8 lg:flex-row'>
       <section className='max-w-[600px]'>
         <h1 className='font-thin font-roboto-mono text-4xl'>
           Online Code Editor, <br /> remimagined
@@ -46,10 +46,11 @@ const page = () => {
           Photon is Completely Open-sourced on Github. You can check it out <Link href={GITHUB_URL} className='font-bold underline'>here</Link>
         </p>
       </section>
-      <video src='/demos/features.mp4' autoPlay={true} loop muted className='demo-video rounded-lg mt-8' />
+      <video src='/demos/features.mp4' autoPlay={true} loop muted className='hidden lg:block demo-video rounded-lg mt-8' />
+      <Image src={'/demos/photon-features.gif'} alt='features' width={889} height={720} className='block lg:hidden demo-video rounded-lg mt-8' />
 
     </section>
-    <section className='mt-[300px] flex flex-wrap gap-4 rounded-md bg-black bg-opacity-20 m-4  items-center justify-center'>
+    <section className='mt-[60px] lg:mt-[100px] flex flex-wrap gap-4 rounded-md bg-black bg-opacity-20 m-4  items-center justify-center'>
       {
         PhotonHighlight.all().map((highlight, index) => {
           return <div key={index} className='h-[400px] w-[350px] p-8 flex-col flex gap-4'>
