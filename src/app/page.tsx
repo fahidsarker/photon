@@ -32,7 +32,7 @@ const page = () => {
       <StartCodingBtn />
     </nav>
 
-    <section className='mt-[60px] flex flex-col items-center lg:justify-between justify-center font-poppins gap-4 mx-8 lg:flex-row'>
+    <section className='mt-8 flex flex-col items-center lg:justify-between justify-center font-poppins gap-4 mx-8 lg:flex-row'>
       <section className='max-w-[600px]'>
         <h1 className='font-thin font-roboto-mono text-4xl'>
           Online Code Editor, <br /> remimagined
@@ -52,7 +52,7 @@ const page = () => {
       <Image src={'/demos/photon-features.gif'} alt='features' width={889} height={720} className='block lg:hidden demo-video rounded-lg mt-8' />
 
     </section>
-    <section className='mt-[60px] lg:mt-[100px] flex flex-wrap gap-4 rounded-md bg-black bg-opacity-20 m-4  items-center justify-center'>
+    <section className='mt-8 lg:mt-[100px] flex flex-wrap gap-4 rounded-md bg-black bg-opacity-20 m-4  items-center justify-center'>
       {
         PhotonHighlight.all().map((highlight, index) => {
           return <div key={index} className='h-[320px] w-[320px] p-8 flex-col flex gap-4 text-white'>
