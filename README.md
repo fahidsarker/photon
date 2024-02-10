@@ -2,6 +2,8 @@
 
 # Photon
 
+<img src="/public/demos/photon-features.gif" alt="MarineGEO circle logo" style="height: 400px; width:497px;"/> 
+
 A Web-based IDE with code compilation powered by Judge0
 
 Built with Typescript 💪🏼 and NextJS
