@@ -50,6 +50,7 @@ RAPID_API_KEY=<YOUR KEY>
 -  [x] Theming
 -  [x] Server-side compilation
 -  [x] Share Feature with string compression and serverside components
+-  [x] Landing Page
 -  [ ] Create landing /about page
 -  [ ] Responsive Mobile View
 -  [ ] More serverside components
