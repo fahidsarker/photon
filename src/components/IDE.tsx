@@ -255,7 +255,10 @@ const IDE = ({ themeBaseStart, language, initCode, initFontSize }: { language: L
 
             <div className="ml-4 flex flex-row  mt-0 items-center justify-center pt-2">
                 <IoMenu className="text-2xl font-bold mr-2 lg:hidden cursor-pointer" />
-                <Image src='/logo/code-logo.png' alt="Logo" width={128} height={128} className="w-8 h-8 cursor-pointer" />
+                <Link href={'/'}>
+                    <Image src='/logo/code-logo.png' alt="Logo" width={128} height={128} className="w-8 h-8 cursor-pointer" />
+
+                </Link>
                 <div className="hidden lg:flex  gap-2 lg:flex-row items-center justify-center">
                     <div className="flex flex-row ml-4 gap-4">
                         <LanguagesDropdown language={language} themeData={themeBase} onSelectChange={onSelectChange} />
