@@ -9,30 +9,7 @@ export const languages: LanguageInterface[] = [
         initCode: `console.log('Hello, World!');`,
         extension: "js",
     },
-    {
-        id: 75,
-        name: "C (Clang 7.0.1)",
-        label: "C (Clang 7.0.1)",
-        value: "c",
-        initCode: `#include <stdio.h> \nint main() \n{ \n    printf("Hello, World!"); \n    return 0; \n}`,
-        extension: "c",
-    },
-    {
-        id: 48,
-        name: "C (GCC 7.4.0)",
-        label: "C (GCC 7.4.0)",
-        value: "c",
-        extension: "c",
-        initCode: `#include <stdio.h> \nint main() \n{ \n    printf("Hello, World!"); \n    return 0; \n}`,
-    },
-    {
-        id: 49,
-        name: "C (GCC 8.3.0)",
-        label: "C (GCC 8.3.0)",
-        value: "c",
-        extension: "c",
-        initCode: `#include <stdio.h> \nint main() \n{ \n    printf("Hello, World!"); \n    return 0; \n}`,
-    },
+
     {
         id: 45,
         name: "Assembly (NASM 2.14.02)",
@@ -64,23 +41,7 @@ export const languages: LanguageInterface[] = [
         extension: "cpp",
     },
 
-    {
-        id: 52,
-        name: "C++ (GCC 7.4.0)",
-        label: "C++ (GCC 7.4.0)",
-        value: "cpp",
-        initCode: `#include <iostream> \nint main() \n{ \n    std::cout << "Hello, World!"; \n    return 0; \n}`,
-        extension: "cpp",
-    },
 
-    {
-        id: 53,
-        name: "C++ (GCC 8.3.0)",
-        label: "C++ (GCC 8.3.0)",
-        value: "cpp",
-        initCode: `#include <iostream> \nint main() \n{ \n    std::cout << "Hello, World!"; \n    return 0; \n}`,
-        extension: "cpp",
-    },
     {
         id: 50,
         name: "C (GCC 9.2.0)",
