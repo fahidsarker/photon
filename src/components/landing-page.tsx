@@ -9,9 +9,24 @@ import Link from "next/link";
 import Image from "next/image";
 import { GITHUB_URL } from "@/data/constants";
 import { languages } from "@/data/languages";
+import CodeEditorWindow from "./CodeEditorWindow";
+import { themes } from "@/data/themes";
+import { defineTheme } from "@/lib/defineTheme";
 
 export function LandingPageComponent() {
   const [email, setEmail] = useState("");
+  const [ideThemeReady, setIdeThemeReady] = useState(false);
+
+  useEffect(() => {
+    defineTheme({
+      background: "#1B2B34",
+      forground: "#CDD3DE",
+      value: "oceanic-next",
+      label: "Oceanic Next",
+    }).then(() => {
+      setIdeThemeReady(true);
+    });
+  }, []);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -100,8 +115,38 @@ export function LandingPageComponent() {
                 alt="Animated preview of Photon code editor functionality"
                 layout="fill"
                 objectFit="cover"
-                className="rounded-xl"
+                className="rounded-xl md:hidden"
               />
+              {ideThemeReady && (
+                <div className="hidden md:block w-full h-full">
+                  <CodeEditorWindow
+                    code={`// Welcome to Photon!
+// This is JavaScript code
+// Try It Out!
+console.log('Hello, Photon!');
+console.log('Code in any language, anywhere!');
+const x = 20;
+console.log(x + 10);
+
+// It can even report errors
+console.log(anotherVariable - 10); // oops code error
+
+// Cool right?
+// You can even execute the code
+// by visiting ${window.location.origin}/typescript
+
+
+// Did you know that Photon supports over 100 programming languages?
+                    `}
+                    fontSize={16}
+                    height="100%"
+                    language={languages[0]}
+                    onChange={() => {}}
+                    theme="oceanic-next"
+                    width="100%"
+                  />
+                </div>
+              )}
             </div>
             <p className="text-center mt-6 text-gray-300 md:text-lg">
               Watch as Photon seamlessly handles multiple languages, real-time
